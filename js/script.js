@@ -1,8 +1,6 @@
 let poses = [];
 {
-
-
-
+  const ctx = document.querySelector(`#canvas`).getContext(`2d`);
   const videoFeed = document.querySelector(`#videoElement`);
   let $rightWrist;
   let $leftWrist;
@@ -19,46 +17,33 @@ let poses = [];
 
   }
 
-  const loadPoseNet = async () => {
-    const net = await posenet.load(1.01);
-    const pose = await net.estimateSinglePose(videoFeed, 0.5, false, 16);
+  const getPose = async () => {
+      const net = await posenet.load(0.75);
+      net.estimateSinglePose(videoFeed, 0.5, false, 16).then(pose => drawHands(pose))
 
-    poses.push(pose);
-    updateHandLocation(pose);
-    console.log(poses.length);
-
-    window.requestAnimationFrame(loadPoseNet);
+      window.requestAnimationFrame(getPose);
   }
 
-  const updateHandLocation = (pose) => {
+  const drawHands = (pose) => {
 
-    const rightWrist = pose.keypoints[10];
-    const leftWrist = pose.keypoints[9];
+    const left = pose.keypoints[9].position;
+    const right = pose.keypoints[10].position;
 
-    $rightWrist.style.left = `${rightWrist.position.x}px`;
-    $rightWrist.style.top = `${rightWrist.position.y}px`;
-
-    $leftWrist.style.left = `${leftWrist.position.x}px`;
-    $leftWrist.style.top = `${leftWrist.position.y}px`;
-
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = 'red';
+    ctx.beginPath();
+    // Left hand
+    ctx.arc(left.x,left.y,10,0,2*Math.PI);
+    //Right hand
+    ctx.arc(right.x,right.y,10,0,2*Math.PI);
+    ctx.fill();
+    ctx.closePath();
   }
 
-  const makeHands = () => {
-    // Create right wrist
-    $rightWrist = document.createElement(`div`);
-    $rightWrist.classList.add(`dot`);
-    document.querySelector(`body`).appendChild($rightWrist);
-
-    // create left wrist
-    $leftWrist = document.createElement(`div`);
-    $leftWrist.classList.add(`dot`);
-    document.querySelector(`body`).appendChild($leftWrist);
-  }
 
   const init = () => {
       setupWebcam();
-      makeHands();
-      window.requestAnimationFrame(loadPoseNet);
+      window.requestAnimationFrame(getPose);
   }
 
   init();
