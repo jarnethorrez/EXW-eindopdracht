@@ -19,7 +19,11 @@ let poses = [];
 
   const getPose = async () => {
       const net = await posenet.load(0.75);
-      net.estimateSinglePose(videoFeed, 0.5, false, 16).then(pose => drawHands(pose))
+      net.estimateSinglePose(videoFeed, 0.5, false, 16)
+      .then(pose => {
+        poses.push(pose);
+        drawHands(pose)
+      });
 
       window.requestAnimationFrame(getPose);
   }
@@ -38,6 +42,31 @@ let poses = [];
     ctx.arc(right.x,right.y,10,0,2*Math.PI);
     ctx.fill();
     ctx.closePath();
+
+    measureMovement(left, right);
+  }
+
+  const measureMovement = (left, right) => {
+
+    if (left.x - right.x > 300) {
+      // console.log('End of swim');
+
+
+      for (i = 1; i < 6; i++) {
+
+        const left2 = poses[poses.length - i].keypoints[9].position;
+        const right2 = poses[poses.length - i].keypoints[10].position;
+
+        if(left2.x - right2.x <= 150) {
+          // console.log("did begin swimming too");
+          console.log("did a swim");
+          break;
+        }
+
+      }
+
+    }
+
   }
 
 
