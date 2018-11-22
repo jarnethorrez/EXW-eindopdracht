@@ -1,0 +1,15 @@
+{
+  "name": "WebSocketTest",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "PORT=8086 NODE_ENV=development nodemon server.js",
+    "ssl": "./scripts/generate-ssl-certs.sh"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "nodemon": "^1.18.6",
+    "socket.io": "^2.1.1"
+  }
+}

@@ -1,5 +1,6 @@
 let poses = [];
 {
+
   const ctx = document.querySelector(`#canvas`).getContext(`2d`);
   const videoFeed = document.querySelector(`#videoElement`);
   let $rightWrist;
@@ -49,8 +50,6 @@ let poses = [];
   const measureMovement = (left, right) => {
 
     if (left.x - right.x > 300) {
-      // console.log('End of swim');
-
 
       for (i = 1; i < 6; i++) {
 
@@ -58,8 +57,7 @@ let poses = [];
         const right2 = poses[poses.length - i].keypoints[10].position;
 
         if(left2.x - right2.x <= 150) {
-          // console.log("did begin swimming too");
-          console.log("did a swim");
+          sendSwim(); // Defined in index.js;
           break;
         }
 
@@ -69,10 +67,18 @@ let poses = [];
 
   }
 
+  const isMobileDevice = () => {
+     return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+  }
 
   const init = () => {
-      setupWebcam();
-      window.requestAnimationFrame(getPose);
+
+      if (!isMobileDevice()) {
+        // Desktop
+        setupWebcam();
+        window.requestAnimationFrame(getPose);
+      } else {
+      }
   }
 
   init();

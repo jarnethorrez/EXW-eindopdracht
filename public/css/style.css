@@ -1,0 +1,23 @@
+html {
+  padding: 0;
+  margin: 0;
+}
+
+.poseNet-DevView {
+  width: 500px;
+  display: grid;
+  grid-template-columns: 500px;
+  grid-template-rows: 400px;
+}
+
+.poseNet-DevView video,
+.poseNet-DevView canvas {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.swimDetected {
+  font-family: Arial;
+  font-weight: bold;
+  text-align: center;
+}
