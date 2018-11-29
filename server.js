@@ -1,12 +1,25 @@
 const express = require('express');
 const socket = require('socket.io');
-let vr;
-
-// App setup
 const app = express();
-const server = app.listen(8080, () => {
-  console.log(`Listening on 8080`);
-})
+const server = require('http').Server(app);
+const https = require('https');
+const fs = require('fs');
+const port = 8080;
+let vr;
+let options = {};
+const serverCallback = () => console.log(`App listening on port ${port}!`);
+
+// https
+if (process.env.NODE_ENV === "development") {
+  options = {
+    key: fs.readFileSync('./config/sslcerts/key.pem'),
+    cert: fs.readFileSync('./config/sslcerts/cert.pem')
+  };
+  https.createServer(options, app).listen(port, serverCallback);
+} else {
+  app.listen(port, serverCallback);
+}
+
 
 // Static files
 app.use(express.static('public'));
