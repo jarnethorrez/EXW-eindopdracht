@@ -11,7 +11,7 @@ const sendSwim = () => {
 
 
 const init = () => {
-    socket = io.connect('/');
+    socket = io.connect('//:8080', {secure: true, verify: false, rejectUnauthorized : false});
 
     socket.on(`connect`, () => {
       document.querySelector(`.id`).innerText = `http://localhost:8080/VR.html?id=${socket.id}`;
