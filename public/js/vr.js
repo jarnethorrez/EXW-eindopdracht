@@ -1,14 +1,15 @@
 let socket;
 let scene;
-let fbxLoader;
+let camera;
 
 const createScene = () => {
 
   scene = document.querySelector('a-scene').object3D;
-
 }
 
 const createWater = () => {
+
+
 
 }
 
@@ -32,26 +33,27 @@ const showSwimReceived = () => {
   }, 1000);
 }
 
+const setupSocket = () => {
+  socket = io.connect('/');
+
+  targetId = getUrlParameter(`id`);
+
+  socket.on(`connect`, () => {
+    console.log(`connected ${socket.id}`);
+    console.log(`Listening to: ${targetId}`);
+  });
+
+  socket.on(`swimToClient`, data => {
+
+    if(data.from == targetId) {
+      console.log('Swim!!');
+      showSwimReceived();
+    }
+  });
+}
+
 const init = () => {
-    socket = io.connect('/');
-
-    targetId = getUrlParameter(`id`);
-
-    socket.on(`connect`, () => {
-      console.log(`connected ${socket.id}`);
-      console.log(`Listening to: ${targetId}`);
-    });
-
-    socket.on(`swimToClient`, data => {
-
-      if(data.from == targetId) {
-        console.log('Swim!!');
-        showSwimReceived();
-      }
-    });
-
-    fbxLoader = new THREE.FBXLoader();
-
+    setupSocket();
     createScene();
     createWater();
 }
