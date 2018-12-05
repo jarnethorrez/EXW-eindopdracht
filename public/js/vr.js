@@ -1,4 +1,16 @@
 let socket;
+let scene;
+let fbxLoader;
+
+const createScene = () => {
+
+  scene = document.querySelector('a-scene').object3D;
+
+}
+
+const createWater = () => {
+
+}
 
 const getUrlParameter = name => {
   name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
@@ -37,6 +49,11 @@ const init = () => {
         showSwimReceived();
       }
     });
+
+    fbxLoader = new THREE.FBXLoader();
+
+    createScene();
+    createWater();
 }
 
 init();

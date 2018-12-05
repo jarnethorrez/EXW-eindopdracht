@@ -6,9 +6,18 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>VR Experience</title>
   <link rel="stylesheet" href="css/style.css">
+  <!-- Needs to be in head according to Aframe Docs -->
+  <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
 </head>
 <body>
+
+  <a-scene>
+  </a-scene>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js" charset="utf-8"></script>
+  <script src="js/lib/Inflate.min.js" charset="utf-8"></script>
+  <script src="js/lib/colladaLoader.js" charset="utf-8"></script>
+  <script src="js/lib/fbxLoader.js" charset="utf-8"></script>
   <script src="js/vr.js" charset="utf-8"></script>
 </body>
 </html>
