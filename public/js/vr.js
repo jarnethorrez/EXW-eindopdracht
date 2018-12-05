@@ -10,6 +10,22 @@ const createScene = () => {
 const createWater = () => {
 
 
+  // Load from C4D model.
+  let mtlLoader = new THREE.MTLLoader();
+  mtlLoader.setTexturePath('../assets/objects/');
+  mtlLoader.setPath('../assets/objects/');
+  mtlLoader.load('Underwater.mtl', (materials) => {
+    materials.preload();
+
+    let objLoader = new THREE.OBJLoader();
+    objLoader.setMaterials(materials);
+    objLoader.setPath('../assets/objects/');
+    objLoader.load('Underwater.obj', (object) => {
+
+      scene.add(object);
+    });
+  });
+
 
 }
 
