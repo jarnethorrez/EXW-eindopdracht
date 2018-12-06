@@ -5,27 +5,31 @@ let camera;
 const createScene = () => {
 
   scene = document.querySelector('a-scene').object3D;
+
+  scene.background = new THREE.Color(0x202FFB);
+
+  const fog = new THREE.Fog(0x202FFB, 10, 2000);
+  scene.fog = fog;
 }
 
 const createWater = () => {
 
-
+  // scene.background = new THREE.Color('rgba(54, 73, 174)');
   // Load from C4D model.
   let mtlLoader = new THREE.MTLLoader();
   mtlLoader.setTexturePath('../assets/objects/');
   mtlLoader.setPath('../assets/objects/');
-  mtlLoader.load('Underwater.mtl', (materials) => {
+  mtlLoader.load('UnderwaterLand.mtl', (materials) => {
     materials.preload();
 
     let objLoader = new THREE.OBJLoader();
     objLoader.setMaterials(materials);
     objLoader.setPath('../assets/objects/');
-    objLoader.load('Underwater.obj', (object) => {
+    objLoader.load('UnderwaterLand.obj', (object) => {
 
       scene.add(object);
     });
   });
-
 
 }
 
