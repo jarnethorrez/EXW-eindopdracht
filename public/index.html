@@ -7,13 +7,28 @@
   <title>Desktop</title>
   <link rel="stylesheet" href="/css/style.css">
 </head>
-<body>
-  <div class="poseNet-DevView">
+<body class="index">
+  <div class="poseNet-DevView hide">
     <video autoplay="true" id="videoElement" width="500" height="400">
     </video>
     <canvas id="canvas" width="500" height="400"></canvas>
   </div>
-  <p class="id"></p>
+
+  <p class="open">open posenet</p>
+
+  <main>
+    <div class="intro">
+      <img src="assets/img/logo.png" alt="logo">
+      <h1>okeanos</h1>
+      <p>An interactive, VR experiment
+built with PoseNet, Websockets & Aframe</p>
+    </div>
+    <div class="visit">
+      <p>visit</p>
+      <p class="id"></p>
+      <p>On your phone, and put on your cardboard</p>
+    </div>
+  </main>
 
   <!-- Socket.io -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js" charset="utf-8"></script>

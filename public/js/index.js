@@ -1,4 +1,5 @@
 let socket;
+let $PNC;
 
 const sendSwim = () => {
   console.log("Swim triggered. - Event emitting");
@@ -8,6 +9,26 @@ const sendSwim = () => {
   });
 }
 
+const handleOpenClick = e => {
+  console.log(`open`);
+  const $PNV = document.querySelector(`.poseNet-DevView`);
+
+  if($PNV.classList.contains(`hide`)) {
+
+    $PNC.classList.remove(`open`);
+    $PNC.classList.add(`close`);
+    $PNC.innerText = `close posenet`;
+
+    $PNV.classList.remove(`hide`);
+  } else {
+    
+    $PNC.classList.remove(`close`);
+    $PNC.classList.add(`open`);
+    $PNC.innerText = `open posenet`;
+
+    $PNV.classList.add(`hide`);
+  }
+}
 
 const init = () => {
     socket = io.connect('//:8080', {secure: true, verify: false, rejectUnauthorized : false});
@@ -15,6 +36,9 @@ const init = () => {
     socket.on(`connect`, () => {
       document.querySelector(`.id`).innerText = `https://172.20.64.121:8080/VR.html?id=${socket.id}`;
     });
+
+    $PNC = document.querySelector(`.open`);
+    $PNC.addEventListener(`click`, handleOpenClick);
 }
 
 init();
