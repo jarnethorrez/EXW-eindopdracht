@@ -41,6 +41,7 @@ const createWater = () => {
 const addShark = () => {
   const haaitje = new GoblinShark();
   haaitje.loadObj(objLoader, mtlLoader, scene);
+  haaitje.swim();
 }
 
 const getUrlParameter = name => {

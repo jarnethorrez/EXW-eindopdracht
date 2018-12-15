@@ -2,7 +2,6 @@
 
 export default class GoblinShark {
 
-
   constructor() {
 
     console.log("Sharkin away");
@@ -20,7 +19,7 @@ export default class GoblinShark {
       objLoader.setPath('../assets/objects/');
       objLoader.load('sharklein.obj', (object) => {
         // object.scale = {x: 0.5, y: 0.5, z: 0.5}
-        console.log(object);
+        this.object = object;
         scene.add(object);
       });
     });
@@ -42,6 +41,10 @@ export default class GoblinShark {
   //
 
   console.log('Fbx werkt niet.');
+  }
+
+  swim() {
+    
   }
 
 }
