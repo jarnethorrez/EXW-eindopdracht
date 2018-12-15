@@ -1,4 +1,5 @@
 import GoblinShark from './classes/GoblinShark.js';
+import JellyFish from './classes/JellyFish.js';
 
 let socket;
 let scene;
@@ -33,9 +34,10 @@ const createWater = () => {
     objLoader.load('UnderwaterSmall1000.obj', (object) => {
       scene.add(object);
       addShark();
+      addJellyFish();
     });
   });
-
+  fbxLoader.load('../assets/fbx/kwal3.fbx');
 }
 
 const addShark = () => {
@@ -43,6 +45,13 @@ const addShark = () => {
   haaitje.loadObj(objLoader, mtlLoader, scene);
   haaitje.swim();
 }
+
+const addJellyFish = () => {
+  const jelly = new JellyFish();
+  jelly.loadFBX(fbxLoader, scene);
+  jelly.swim();
+}
+
 
 const getUrlParameter = name => {
   name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
