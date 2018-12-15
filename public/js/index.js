@@ -21,7 +21,7 @@ const handleOpenClick = e => {
 
     $PNV.classList.remove(`hide`);
   } else {
-    
+
     $PNC.classList.remove(`close`);
     $PNC.classList.add(`open`);
     $PNC.innerText = `open posenet`;
@@ -31,6 +31,7 @@ const handleOpenClick = e => {
 }
 
 const init = () => {
+
     socket = io.connect('//:8080', {secure: true, verify: false, rejectUnauthorized : false});
 
     socket.on(`connect`, () => {

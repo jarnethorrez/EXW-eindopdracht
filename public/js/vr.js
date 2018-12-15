@@ -1,6 +1,12 @@
+import GoblinShark from './classes/GoblinShark.js';
+
 let socket;
 let scene;
 let camera;
+let fbxLoader;
+
+let mtlLoader;
+let objLoader;
 
 const createScene = () => {
 
@@ -17,21 +23,24 @@ const createScene = () => {
 
 const createWater = () => {
 
-  // Load from C4D model.
-  let mtlLoader = new THREE.MTLLoader();
+  // Load from C4D model
   mtlLoader.setTexturePath('../assets/objects/');
   mtlLoader.setPath('../assets/objects/');
   mtlLoader.load('UnderwaterSmall1000.mtl', (materials) => {
     materials.preload();
-
-    let objLoader = new THREE.OBJLoader();
     objLoader.setMaterials(materials);
     objLoader.setPath('../assets/objects/');
     objLoader.load('UnderwaterSmall1000.obj', (object) => {
       scene.add(object);
+      addShark();
     });
   });
 
+}
+
+const addShark = () => {
+  const haaitje = new GoblinShark();
+  haaitje.loadObj(objLoader, mtlLoader, scene);
 }
 
 const getUrlParameter = name => {
@@ -57,7 +66,7 @@ const showSwimReceived = () => {
 const setupSocket = () => {
   socket = io.connect('/');
 
-  targetId = getUrlParameter(`id`);
+  let targetId = getUrlParameter(`id`);
 
   socket.on(`connect`, () => {
     console.log(`connected ${socket.id}`);
@@ -74,9 +83,16 @@ const setupSocket = () => {
 }
 
 const init = () => {
+
+    mtlLoader = new THREE.MTLLoader();
+    objLoader = new THREE.OBJLoader();
+    fbxLoader = new THREE.FBXLoader();
+
     setupSocket();
     createScene();
     createWater();
+
+
 }
 
 init();
