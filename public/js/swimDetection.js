@@ -69,13 +69,19 @@ let $btn;
     if(startedExperience) {
       if (left.x - right.x > 300) {
 
-        for (i = 1; i < 6; i++) {
+        let limit = 6;
+        if (poses.length < 6) {
+          limit = poses.length;
+        }
+
+        for (i = 1; i < limit; i++) {
 
           const left2 = poses[poses.length - i].keypoints[9].position;
           const right2 = poses[poses.length - i].keypoints[10].position;
 
           if(left2.x - right2.x <= 150) {
             sendSwim(); // Defined in index.js;
+            poses = [];
             break;
           }
 
