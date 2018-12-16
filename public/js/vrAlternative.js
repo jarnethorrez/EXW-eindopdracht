@@ -1,4 +1,6 @@
 let socket;
+let index = 0;
+let amountOfFish = 2;
 
 const getUrlParameter = name => {
   name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
@@ -8,16 +10,14 @@ const getUrlParameter = name => {
 };
 
 const showSwimReceived = () => {
-  const $p = document.createElement(`p`);
-  $p.innerText = `SWIM DETECTED!`;
-  $p.classList.add(`swimDetected`);
-
-  document.querySelector(`body`).appendChild($p);
-
-  setTimeout(() => {
-    const $p = document.querySelector(`.swimDetected`);
-    document.querySelector(`body`).removeChild($p);
-  }, 1000);
+  console.log('swim');
+  if( !(index + 1 >= amountOfFish) ) {
+    document.querySelector(`#F${index}`).classList.add('hidden');
+    index++;
+    document.querySelector(`#F${index}`).classList.remove('hidden');
+  } else {
+    console.log('not enough fish.');
+  }
 }
 
 const setupSocket = () => {
@@ -33,7 +33,6 @@ const setupSocket = () => {
   socket.on(`swimToClient`, data => {
 
     if(data.from == targetId) {
-      console.log('Swim!!');
       showSwimReceived();
     }
   });
