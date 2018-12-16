@@ -1,6 +1,6 @@
 let socket;
 let index = 0;
-let amountOfFish = 2;
+let amountOfFish = 3;
 
 const getUrlParameter = name => {
   name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
