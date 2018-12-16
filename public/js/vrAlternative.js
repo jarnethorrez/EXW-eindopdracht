@@ -42,7 +42,6 @@ const setupSocket = () => {
 const init = () => {
 
     setupSocket();
-    createScene();
 
 }
 

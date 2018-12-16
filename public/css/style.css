@@ -4,13 +4,15 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+  font-size: 62.5%;
+  font-family: Arial;
 }
 
 .poseNet-DevView {
   width: 500px;
   display: grid;
-  grid-template-columns: 500px;
-  grid-template-rows: 400px;
+  grid-template-columns: 50rem;
+  grid-template-rows: 40rem;
   position: absolute;
   left: 0;
   top: 0;
@@ -27,7 +29,6 @@ body {
 }
 
 .swimDetected {
-  font-family: Arial;
   font-weight: bold;
   text-align: center;
 }
@@ -36,7 +37,6 @@ body {
   background: url(../assets/img/background.jpg) no-repeat;
   background-size: cover;
   color: white;
-  font-family: Arial;
   width: 100%;
   min-height: 100%;
   display: flex;
@@ -60,21 +60,22 @@ body {
 
 .intro img {
   justify-self: center;
-  margin-bottom: 50px;
-  width: 128px;
-  height: 128px;
+  margin-bottom: 5rem;
+  width: 12.8rem;
+  height: 12.8rem;
 }
 
 .intro p {
-  width: 400px;
+  width: 40rem;
   text-align: center;
-  font-size: 14pt;
+  font-size: 1.4rem;
   margin-top: 50px;
 }
 
 .visit {
   text-align: center;
-  margin-top: 100px;
+  margin-top: 10rem;
+  font-size: 1.4rem;
 }
 
 .visit .id {
@@ -84,15 +85,17 @@ body {
 .open,
 .close {
   position: absolute;
-  top: 10px;
-  right: 20px;
+  top: 1rem;
+  right: 2rem;
+  font-size: 1.4rem;
 }
 
 .start-button {
-  width: 300px;
+  width: 30rem;
   border: 1px solid white;
   text-align: center;
-  margin: 100px auto 0;
+  margin: 10rem auto 0;
+  font-size: 1.4rem;
   transition: all 200ms ease-in-out;
 }
 
@@ -100,4 +103,47 @@ body {
 .stop-button {
   color: black;
   background: white;
+}
+
+.alternative {
+  background: url(../assets/img/vr.png) no-repeat;
+  background-size: cover;
+}
+
+.alternative .darkness {
+  background: rgba(0, 0, 0, 0); /* Underwater gets darker as deeper you go */
+  width 100%;
+  height: 100%;
+  display: flex;
+}
+
+.alternative .info {
+  color: white;
+  padding-left: 10%;
+}
+
+.alternative .info h1 {
+  font-size: 2.4rem;
+}
+
+.alternative .info p {
+  font-size: 1.4rem;
+  line-height: 2rem;
+}
+
+.fish {
+  width: 80%;
+  display: flex;
+  align-items: center;
+}
+
+.depth {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.depth img {
+  width: 50%;
 }
