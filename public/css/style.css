@@ -138,9 +138,40 @@ body {
   align-items: center;
 }
 
-.fish img {
+.fishImage {
   animation: fishMovement 5s infinite;
   width: 40%;
+}
+
+.infoMoveLeft {
+  animation: infoMoveLeft 1s;
+}
+
+@keyframes infoMoveLeft {
+  0% {
+    opacity: 1;
+    padding-left: 10%;
+  }
+
+  100% {
+    opacity: 0;
+    padding-left: 0;
+    padding-right: 10%;
+  }
+}
+
+.imgMoveRight {
+  animation: imgMoveRight 1s;
+}
+
+@keyframes imgMoveRight {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
 }
 
 @keyframes fishMovement {

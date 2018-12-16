@@ -13,16 +13,30 @@ const getUrlParameter = name => {
 const showSwimReceived = () => {
   console.log('swim');
   if( !(index + 1 >= amountOfFish) ) {
-    document.querySelector(`#F${index}`).classList.add('hidden');
-    index++;
-    document.querySelector(`#F${index}`).classList.remove('hidden');
-    document.querySelector(`.darkness`).style.backgroundColor = `rgba(0, 0, 0, ${0 + index / 7})`;
-    updateDepth();
+
+    document.querySelector(`#F${index} .info`).classList.add('infoMoveLeft');
+    document.querySelector(`#F${index} img`).classList.add('imgMoveRight');
+
+    setTimeout(() => {
+      document.querySelector(`#F${index}`).classList.add('hidden');
+      index++;
+      document.querySelector(`#F${index}`).classList.remove('hidden');
+      document.querySelector(`.darkness`).style.backgroundColor = `rgba(0, 0, 0, ${0 + index / 7})`;
+      updateDepth();
+    }, 1000);
   } else {
-    document.querySelector(`#F${index}`).classList.add('hidden');
-    document.querySelector(`.darkness`).style.backgroundColor = `rgba(0, 0, 0, 1)`;
-    document.querySelector(`.depth`).classList.add('hidden');
-    document.querySelector(`.end`).classList.remove('hidden');
+
+    document.querySelector(`#F${index} .info`).classList.add('infoMoveLeft');
+    document.querySelector(`#F${index} img`).classList.add('imgMoveRight');
+
+    setTimeout(() => {
+
+      document.querySelector(`#F${index}`).classList.add('hidden');
+      document.querySelector(`.darkness`).style.backgroundColor = `rgba(0, 0, 0, 1)`;
+      document.querySelector(`.depth`).classList.add('hidden');
+      document.querySelector(`.end`).classList.remove('hidden');
+
+    }, 1000);
   }
 }
 
