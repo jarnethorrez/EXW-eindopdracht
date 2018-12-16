@@ -1,5 +1,9 @@
 import GoblinShark from './classes/GoblinShark.js';
 import JellyFish from './classes/JellyFish.js';
+import DumboOctopus from './classes/DumboOctopus.js';
+import TelescopeOctopus from './classes/TelescopeOctopus.js';
+import Benthocodon from './classes/Benthocodon.js';
+import HatchetFish from './classes/HatchetFish.js';
 
 let socket;
 let scene;
@@ -22,7 +26,8 @@ const createScene = () => {
   const fog = new THREE.Fog(0x202FFB, 1, 500);
   scene.fog = fog;
 
-  const light = new THREE.AmbientLight( 0x202FFB, 2 );
+  //const light = new THREE.AmbientLight( 0x202FFB );
+  const light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
   scene.add( light );
 }
 
@@ -39,9 +44,12 @@ const createWater = () => {
       scene.add(object);
       addShark();
       addJellyFish();
+      addDumbo();
+      addTeleOcto();
+      addBenthocodon();
+      addHatchetFish();
     });
   });
-  fbxLoader.load('../assets/fbx/kwal3.fbx');
 }
 
 const addShark = () => {
@@ -50,13 +58,33 @@ const addShark = () => {
   haaitje.swim();
 }
 
+const addDumbo = () => {
+  const dumbo = new DumboOctopus();
+  dumbo.loadObj(objLoader, mtlLoader, scene);
+  dumbo.swim();
+}
+
 const addJellyFish = () => {
-  console.log(scene.renderer);
   const jelly = new JellyFish();
-  jelly.loadFBX(fbxLoader, scene);
+  jelly.loadObj(objLoader, mtlLoader, scene);
   jelly.swim();
 }
 
+const addTeleOcto = () => {
+  const tele = new TelescopeOctopus();
+  tele.loadObj(objLoader, mtlLoader, scene);
+  tele.swim();
+}
+
+const addBenthocodon = () => {
+  const bentho = new Benthocodon();
+  bentho.loadObj(objLoader, mtlLoader, scene);
+}
+
+const addHatchetFish = () => {
+  const hatchet = new Benthocodon();
+  hatchet.loadObj(objLoader, mtlLoader, scene);
+}
 
 const getUrlParameter = name => {
   name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
@@ -106,7 +134,6 @@ const init = () => {
     setupSocket();
     createScene();
     createWater();
-
 
 }
 
