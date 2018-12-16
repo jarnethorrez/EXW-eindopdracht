@@ -120,6 +120,7 @@ body {
 .alternative .info {
   color: white;
   padding-left: 10%;
+  width: 60%;
 }
 
 .alternative .info h1 {
@@ -139,6 +140,7 @@ body {
 
 .fish img {
   animation: fishMovement 5s infinite;
+  width: 40%;
 }
 
 @keyframes fishMovement {
