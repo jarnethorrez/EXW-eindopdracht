@@ -93,4 +93,11 @@ body {
   border: 1px solid white;
   text-align: center;
   margin: 100px auto 0;
+  transition: all 200ms ease-in-out;
+}
+
+.start-button:hover,
+.stop-button {
+  color: black;
+  background: white;
 }

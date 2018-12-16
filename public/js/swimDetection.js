@@ -14,10 +14,12 @@ let $btn;
 
       $btn.querySelector(`p`).innerText = 'Stop Experience';
       startedExperience = true;
+      $btn.classList.add(`stop-button`);
 
     } else {
       $btn.querySelector(`p`).innerText = 'Start Experience';
       startedExperience = false;
+      $btn.classList.remove(`stop-button`);
     }
 
   }
