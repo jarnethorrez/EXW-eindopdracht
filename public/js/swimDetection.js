@@ -1,10 +1,26 @@
 let poses = [];
+let startedExperience =  false;
+let $btn;
 {
 
   const ctx = document.querySelector(`#canvas`).getContext(`2d`);
   const videoFeed = document.querySelector(`#videoElement`);
   let $rightWrist;
   let $leftWrist;
+
+  const handleStartClick = () => {
+
+    if(!startedExperience) {
+
+      $btn.querySelector(`p`).innerText = 'Stop Experience';
+      startedExperience = true;
+
+    } else {
+      $btn.querySelector(`p`).innerText = 'Start Experience';
+      startedExperience = false;
+    }
+
+  }
 
   const setupWebcam = () => {
 
@@ -48,21 +64,22 @@ let poses = [];
   }
 
   const measureMovement = (left, right) => {
+    if(startedExperience) {
+      if (left.x - right.x > 300) {
 
-    if (left.x - right.x > 300) {
+        for (i = 1; i < 6; i++) {
 
-      for (i = 1; i < 6; i++) {
+          const left2 = poses[poses.length - i].keypoints[9].position;
+          const right2 = poses[poses.length - i].keypoints[10].position;
 
-        const left2 = poses[poses.length - i].keypoints[9].position;
-        const right2 = poses[poses.length - i].keypoints[10].position;
+          if(left2.x - right2.x <= 150) {
+            sendSwim(); // Defined in index.js;
+            break;
+          }
 
-        if(left2.x - right2.x <= 150) {
-          sendSwim(); // Defined in index.js;
-          break;
         }
 
       }
-
     }
 
   }
@@ -78,7 +95,11 @@ let poses = [];
         setupWebcam();
         window.requestAnimationFrame(getPose);
       } else {
+
       }
+
+      $btn = document.querySelector(`.start-button`);
+      $btn.addEventListener(`click`, handleStartClick);
   }
 
   init();
