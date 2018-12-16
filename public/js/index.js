@@ -32,13 +32,15 @@ const handleOpenClick = e => {
 
 const init = () => {
 
-    socket = io.connect(`//`, {secure: true, verify: false, rejectUnauthorized : false});
+    socket = io();
 
     // IN DEVELOPMENT@
     // socket.on(`ipAddress`, ipAddress => {
     //   document.querySelector(`.id`).innerText = `https://${ipAddress}:8080/vrAlternative.html?id=${socket.id}`;
     // });
-    document.querySelector(`.id`).innerText = `https://okeanos.herokuapp.com/VRAlternative.html?id=${socket.id}`;
+    socket.on('connect', () => {
+      document.querySelector(`.id`).innerText = `https://okeanos.herokuapp.com/VRAlternative.html?id=${socket.id}`;
+    });
 
 
     $PNC = document.querySelector(`.open`);
