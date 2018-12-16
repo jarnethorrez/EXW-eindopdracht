@@ -18,6 +18,8 @@ const showSwimReceived = () => {
   } else {
     console.log('not enough fish.');
   }
+
+  document.querySelector(`.darkness`).style.backgroundColor = `rgba(0, 0, 0, ${0 + index / 10})`;
 }
 
 const setupSocket = () => {
