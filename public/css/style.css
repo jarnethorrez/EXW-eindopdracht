@@ -121,6 +121,7 @@ body {
   color: white;
   padding-left: 10%;
   width: 60%;
+  padding-right: 5%;
 }
 
 .alternative .info h1 {
@@ -156,7 +157,7 @@ body {
   100% {
     opacity: 0;
     padding-left: 0;
-    padding-right: 10%;
+    padding-right: 15%;
   }
 }
 
