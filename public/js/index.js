@@ -32,7 +32,7 @@ const handleOpenClick = e => {
 
 const init = () => {
 
-    socket = io.connect('//:8080', {secure: true, verify: false, rejectUnauthorized : false});
+    socket = io.connect(`//`, {secure: true, verify: false, rejectUnauthorized : false});
 
     // IN DEVELOPMENT@
     // socket.on(`ipAddress`, ipAddress => {
