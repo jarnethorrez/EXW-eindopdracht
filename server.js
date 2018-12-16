@@ -4,7 +4,7 @@ const isDevelopment = (process.env.NODE_ENV === "development");
 
 const https = require('https');
 const fs = require('fs');
-const port = 8080;
+const port = process.env.PORT || 8080;
 let options = {};
 let ipAddress;
 
