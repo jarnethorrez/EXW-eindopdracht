@@ -127,6 +127,10 @@ const setupSocket = () => {
 
 const init = () => {
 
+  if(!getUrlParameter(`id`)) {
+    window.location.replace("https://okeanos.herokuapp.com/");
+  }
+
     mtlLoader = new THREE.MTLLoader();
     objLoader = new THREE.OBJLoader();
     fbxLoader = new THREE.FBXLoader();

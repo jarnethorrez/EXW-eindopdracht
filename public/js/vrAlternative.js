@@ -77,6 +77,10 @@ const createDepth = () => {
 
 const init = () => {
 
+    if(!getUrlParameter(`id`)) {
+      window.location.replace("https://okeanos.herokuapp.com/");
+    }
+
     setupSocket();
     createDepth();
 
