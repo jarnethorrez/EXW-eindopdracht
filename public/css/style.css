@@ -120,6 +120,7 @@ body {
 .alternative .info {
   color: white;
   padding-left: 10%;
+  width: 60%;
 }
 
 .alternative .info h1 {
@@ -139,6 +140,7 @@ body {
 
 .fish img {
   animation: fishMovement 5s infinite;
+  width: 40%;
 }
 
 @keyframes fishMovement {
@@ -166,14 +168,49 @@ body {
 
 .depth {
   width: 20%;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 3rem repeat(15, 2rem) 6rem 1fr;
   justify-content: center;
   align-items: center;
 }
 
 .depth img {
-  width: 50%;
+  width: 100%;
+  height: 100%;
+  grid-column: 2;
+  grid-row: 2 / span 17;
 }
+
+.depth .amount {
+  background: white;
+  font-size: 1.4rem;
+  text-align: center;
+  height: 3rem;
+  line-height: 3rem;
+  grid-column: 2;
+  grid-row: 3;
+  transition: all 200ms ease-in-out;
+}
+
+.end {
+  color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.end h1 {
+  font-size: 3rem;
+}
+
+.end p {
+  font-size: 1.8rem;
+}
+
 
 .hidden {
   display: none;

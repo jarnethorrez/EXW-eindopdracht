@@ -1,6 +1,7 @@
 let socket;
 let index = 0;
-let amountOfFish = 2;
+let amountOfFish = 7;
+let depths = ['Surface', '± 780m', '± 950m', '± 1.5km', '± 1.8km', '± 1.9km', '± 3.5km'];
 
 const getUrlParameter = name => {
   name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
@@ -15,8 +16,13 @@ const showSwimReceived = () => {
     document.querySelector(`#F${index}`).classList.add('hidden');
     index++;
     document.querySelector(`#F${index}`).classList.remove('hidden');
+    document.querySelector(`.darkness`).style.backgroundColor = `rgba(0, 0, 0, ${0 + index / 7})`;
+    updateDepth();
   } else {
-    console.log('not enough fish.');
+    document.querySelector(`#F${index}`).classList.add('hidden');
+    document.querySelector(`.darkness`).style.backgroundColor = `rgba(0, 0, 0, 1)`;
+    document.querySelector(`.depth`).classList.add('hidden');
+    document.querySelector(`.end`).classList.remove('hidden');
   }
 }
 
@@ -38,9 +44,27 @@ const setupSocket = () => {
   });
 }
 
+const updateDepth = () => {
+  $amount = document.querySelector(`.amount`);
+  $amount.innerText = depths[index];
+  $amount.style.gridRow = `${5 + (index * 2)}`;
+}
+
+const createDepth = () => {
+
+  const $depth = document.querySelector(`.depth`);
+
+  $amount = document.createElement('div');
+  $amount.classList.add('amount');
+  $amount.innerText = depths[index];
+  $depth.appendChild($amount);
+
+}
+
 const init = () => {
 
     setupSocket();
+    createDepth();
 
 }
 
