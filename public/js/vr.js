@@ -13,6 +13,10 @@ const createScene = () => {
 
   scene = document.querySelector('a-scene').object3D;
 
+  scene.addEventListener('render-target-loaded', () => {
+    console.log(scene.renderer);
+  });
+
   scene.background = new THREE.Color(0x202FFB);
 
   const fog = new THREE.Fog(0x202FFB, 1, 500);
@@ -47,6 +51,7 @@ const addShark = () => {
 }
 
 const addJellyFish = () => {
+  console.log(scene.renderer);
   const jelly = new JellyFish();
   jelly.loadFBX(fbxLoader, scene);
   jelly.swim();

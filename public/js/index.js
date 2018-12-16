@@ -34,8 +34,8 @@ const init = () => {
 
     socket = io.connect('//:8080', {secure: true, verify: false, rejectUnauthorized : false});
 
-    socket.on(`connect`, () => {
-      document.querySelector(`.id`).innerText = `https://172.20.64.121:8080/VR.html?id=${socket.id}`;
+    socket.on(`ipAddress`, ipAddress => {
+      document.querySelector(`.id`).innerText = `https://${ipAddress}:8080/VR.html?id=${socket.id}`;
     });
 
     $PNC = document.querySelector(`.open`);

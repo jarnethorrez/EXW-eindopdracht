@@ -21,19 +21,20 @@ export default class JellyFish {
         }
       });
       scene.add(object);
+      //console.log(object);
     });
   console.log('Fbx jellyfish');
   }
 
   swim() {
-    requestAnimationFrame(this.swim);
-    if(mixers.length > 0) {
-      for (var i = 0; i < mixers.length; i ++) {
+    if(this.mixers.length > 0); {
+      for (var i = 0; i < this.mixers.length; i ++) {
         mixers [i].update(clock.getDelta());
       }
     }
     renderer.render(scene, camera);
     stats.update();
+    requestAnimationFrame(this.swim);
   }
 
 }
