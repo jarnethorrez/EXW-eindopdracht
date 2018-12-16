@@ -231,7 +231,8 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 80%;
+  margin: 0 auto;
 }
 
 .end h1 {
